@@ -1,0 +1,30 @@
+﻿@page
+@using ASPnet_2_lab.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+    Person filedPerson = Model.PersonService.ReadPeopleFromFile("people.txt", 1).First();
+    Book filedBook = Model.BookService.ReadBooksFromFile("books.txt", 1).First();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+<div>
+    <p>Look at all those wonderful people</p>
+    @foreach (Person person in @Model.PersonService.GetAllPeople())
+    {
+        <p class="text-center">@person.ToString()</p>
+    }
+    <p>And all those wonderful books!</p>
+    @foreach (Book book in @Model.BookService.GetAllBooks())
+    {
+        <p class="text-center">@book.ToString()</p>
+    }
+    <p>And these guys from files!</p>
+    <p class="text-center">@filedPerson.ToString()</p>
+    <p class="text-center">@filedBook</p>
+</div>
+
+
